@@ -1,21 +1,14 @@
 import React, { useState } from "react";
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-  TouchableHighlight,
-  TextInput,
-  StyleSheet
-} from "react-native";
+import { Text, View, TouchableOpacity, Image, TouchableHighlight, TextInput, StyleSheet } from "react-native";
 
 const Login2 = () => {
   const [selected, setSelected] = useState(false);
+
   const onPress = () => {
     setSelected(!selected);
   };
-  return (
-    <View style={styles.container}>
+
+  return <View style={styles.container}>
       <View style={styles.heading}>
         <Text style={styles.headingText}>Log in</Text>
       </View>
@@ -30,11 +23,7 @@ const Login2 = () => {
         </View>
         <View style={styles.forgotPassword}>
           <View>
-            <CheckBox
-              onPress={onPress}
-              selected={selected}
-              text="Remember me"
-            />
+            <CheckBox onPress={onPress} selected={selected} text="Remember me" />
           </View>
           <TouchableOpacity>
             <Text>Forgot Password?</Text>
@@ -50,34 +39,25 @@ const Login2 = () => {
         </View>
         <View style={styles.imageContainer}>
           <View style={styles.iconContainer}>
-            <Image
-              source={require("./assets/appleIcon.png")}
-              style={styles.icon}
-            />
+            <Image source={require("./assets/appleIcon.png")} style={styles.icon} />
           </View>
           <View style={styles.iconContainer}>
-            <Image
-              source={require("./assets/googleIcon.png")}
-              style={styles.icon}
-            />
+            <Image source={require("./assets/googleIcon.png")} style={styles.icon} />
           </View>
           <View style={styles.iconContainer}>
-            <Image
-              source={require("./assets/fbIcon.png")}
-              style={styles.icon}
-            />
+            <Image source={require("./assets/fbIcon.png")} style={styles.icon} />
           </View>
         </View>
       </View>
       <View style={styles.footerContainer}>
         <Text style={styles.footerText}>Do not have an account?</Text>
         <TouchableOpacity>
-          <Text>Sign Up</Text>
+          <Text style={styles.VnCYZNEY}>Sign Up</Text>
         </TouchableOpacity>
       </View>
-    </View>
-  );
+    </View>;
 };
+
 const styles = StyleSheet.create({
   container: {
     padding: 20,
@@ -160,38 +140,32 @@ const styles = StyleSheet.create({
   },
   footerText: {
     color: "#6B6B6B"
+  },
+  VnCYZNEY: {
+    left: 8,
+    position: "absolute",
+    width: 55,
+    top: 0,
+    height: 18
   }
 });
-
 export default Login2;
 
-const Button = (props) => {
-  return (
-    <TouchableHighlight onPress={props.onPress} underlayColor="#DDDDDD">
-      <View
-        style={[
-          btnStyles.button,
-          {
-            backgroundColor: props.backgroundColor
-              ? props.backgroundColor
-              : "#000000",
-            height: props.height ? props.height : 49,
-            borderWidth: props.borderWidth ? props.borderWidth : 0,
-            borderColor: props.borderColor ? props.borderColor : "#000000"
-          }
-        ]}
-      >
-        <Text
-          style={[
-            btnStyles.text,
-            { color: props.color ? props.color : "#ffffff" }
-          ]}
-        >
+const Button = props => {
+  return <TouchableHighlight onPress={props.onPress} underlayColor="#DDDDDD">
+      <View style={[btnStyles.button, {
+      backgroundColor: props.backgroundColor ? props.backgroundColor : "#000000",
+      height: props.height ? props.height : 49,
+      borderWidth: props.borderWidth ? props.borderWidth : 0,
+      borderColor: props.borderColor ? props.borderColor : "#000000"
+    }]}>
+        <Text style={[btnStyles.text, {
+        color: props.color ? props.color : "#ffffff"
+      }]}>
           {props.children}
         </Text>
       </View>
-    </TouchableHighlight>
-  );
+    </TouchableHighlight>;
 };
 
 const btnStyles = StyleSheet.create({
@@ -207,24 +181,24 @@ const btnStyles = StyleSheet.create({
   }
 });
 
-const CheckBox = ({ selected, onPress, text }) => (
-  <TouchableOpacity onPress={onPress}>
+const CheckBox = ({
+  selected,
+  onPress,
+  text
+}) => <TouchableOpacity onPress={onPress}>
     <View style={checkBoxStyles.checkBoxContainer}>
       <View style={checkBoxStyles.iconContainer}>
-        {selected && (
-          <Image
-            source={require("./assets/checkbox.png")}
-            style={checkBoxStyles.icon}
-          />
-        )}
+        {selected && <Image source={require("./assets/checkbox.png")} style={checkBoxStyles.icon} />}
       </View>
       <Text style={checkBoxStyles.iconText}>{text}</Text>
     </View>
-  </TouchableOpacity>
-);
+  </TouchableOpacity>;
 
 const checkBoxStyles = StyleSheet.create({
-  checkBoxContainer: { display: "flex", flexDirection: "row" },
+  checkBoxContainer: {
+    display: "flex",
+    flexDirection: "row"
+  },
   iconContainer: {
     height: 18,
     width: 18,
@@ -235,28 +209,20 @@ const checkBoxStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  icon: { height: 16, width: 16 },
-  iconText: { marginLeft: 10 }
+  icon: {
+    height: 16,
+    width: 16
+  },
+  iconText: {
+    marginLeft: 10
+  }
 });
 
-const Input = (props) => {
-  return (
-    <View>
-      <TextInput
-        style={textStyles.input}
-        placeholder={props.placeholder}
-        value={props.value}
-        onChangeText={(num) => props.setValue(num)}
-        placeholderTextColor="#ddd"
-        editable={props.editable !== false}
-      />
-      {props.errorText
-        ? (
-        <Text style={textStyles.error}>{props.errorText}</Text>
-          )
-        : null}
-    </View>
-  );
+const Input = props => {
+  return <View>
+      <TextInput style={textStyles.input} placeholder={props.placeholder} value={props.value} onChangeText={num => props.setValue(num)} placeholderTextColor="#ddd" editable={props.editable !== false} />
+      {props.errorText ? <Text style={textStyles.error}>{props.errorText}</Text> : null}
+    </View>;
 };
 
 const textStyles = StyleSheet.create({
